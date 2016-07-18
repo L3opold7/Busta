@@ -12,9 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ListAdapter listAdapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,23 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // 커스텀 어댑터 생성
+        listAdapter = new ListAdapter();
+
+        // Xml에서 추가한 ListView 연결
+        listView = (ListView) findViewById(R.id.listview);
+
+        // ListView에 어댑터 연결
+        listView.setAdapter(listAdapter);
+
+        listAdapter.add("하스스톤");
+        listAdapter.add("몬스터 헌터");
+        listAdapter.add("디아블로");
+        listAdapter.add("와우");
+        listAdapter.add("리니지");
+        listAdapter.add("안드로이드");
+        listAdapter.add("아이폰");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
